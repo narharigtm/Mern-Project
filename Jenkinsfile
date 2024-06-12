@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/narharigtm/PhpMysql_project.git']])
+                checkout scmGit(branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/narharigtm/Mern-Project.git']])
             }
         }
         stage('build & run'){
@@ -17,7 +17,7 @@ pipeline {
     post {
         success {
             echo 'Pipeline succeeded!'
-            sh 'docker-compose down'
+           
         }
         failure {
             echo 'Pipeline failed!'
