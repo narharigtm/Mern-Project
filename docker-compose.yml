@@ -28,9 +28,9 @@ services:
 
   prometheus:
     image: prom/prometheus
-    container_name: prometheus1
+    container_name: prometheus2
     ports:
-      - '9092:9090'
+      - '9095:9090'
     volumes:
       - ./config:/etc/prometheus
     command:
@@ -38,16 +38,16 @@ services:
 
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter1 
+    container_name: node_exporter2 
     ports:
-      - '9102:9100'
+      - '9105:9100'
  
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
-    container_name: cadvisor1
+    container_name: cadvisor2
     ports:
-      - '8089:8080'
+      - '8092:8080'
     volumes:
       - /var/run:/var/run:ro
       - /sys:/sys:ro
@@ -56,9 +56,9 @@ services:
 
   grafana:
     image: grafana/grafana
-    container_name: grafana1
+    container_name: grafana2
     ports:
-      - '3002:3000'
+      - '3005:3000'
     restart: unless-stopped
 
 
