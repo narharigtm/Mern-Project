@@ -28,7 +28,7 @@ services:
 
   prometheus:
     image: prom/prometheus
-    container_name: prometheus
+    container_name: prometheus1
     ports:
       - '9092:9090'
     volumes:
@@ -38,14 +38,14 @@ services:
 
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter 
+    container_name: node_exporter1 
     ports:
       - '9102:9100'
  
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
-    container_name: cadvisor
+    container_name: cadvisor1
     ports:
       - '8089:8080'
     volumes:
@@ -56,7 +56,7 @@ services:
 
   grafana:
     image: grafana/grafana
-    container_name: grafana
+    container_name: grafana1
     ports:
       - '3002:3000'
     restart: unless-stopped
