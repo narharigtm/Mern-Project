@@ -5,7 +5,7 @@ services:
     build:
       context: ./frontend
     ports:
-      - "3001:3000"
+      - "3005:3000"
     depends_on:
       - backend
 
@@ -13,7 +13,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "4001:3000"
+      - "4002:3000"
     environment:
       - MONGO_URL=mongodb://mongo:27017/books-collection?retryWrites=true&w=majority
     depends_on:
@@ -22,15 +22,15 @@ services:
   mongo:
     image: mongo:4.4
     ports:
-      - "27017:27017"
+      - "27018:27017"
     volumes:
       - mongo-data:/data/db
 
   prometheus:
     image: prom/prometheus
-    container_name: prometheus2
+    container_name: prometheus3
     ports:
-      - '9095:9090'
+      - '9096:9090'
     volumes:
       - ./config:/etc/prometheus
     command:
@@ -38,16 +38,16 @@ services:
 
   node-exporter:
     image: quay.io/prometheus/node-exporter:latest
-    container_name: node_exporter2 
+    container_name: node_exporter3
     ports:
-      - '9105:9100'
+      - '9106:9100'
  
 
   cadvisor:
     image: gcr.io/cadvisor/cadvisor
-    container_name: cadvisor2
+    container_name: cadvisor3
     ports:
-      - '8092:8080'
+      - '8093:8080'
     volumes:
       - /var/run:/var/run:ro
       - /sys:/sys:ro
@@ -56,9 +56,9 @@ services:
 
   grafana:
     image: grafana/grafana
-    container_name: grafana2
+    container_name: grafana3
     ports:
-      - '3005:3000'
+      - '3006:3000'
     restart: unless-stopped
 
 
