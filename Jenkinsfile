@@ -15,13 +15,21 @@ pipeline {
         }
     }
     post {
+        always {
+            // Clean up Docker containers
+            sh 'sudo docker-compose down'
+        }
         success {
-            echo 'Pipeline succeeded!'
-           
+            // Post-build actions to execute on success
+            slackSend channel: '#jenkins-testing',
+                      color: 'good',
+                      message: "ci-pipeline-sucess-of project"
         }
         failure {
-            echo 'Pipeline failed!'
-            sh 'docker-compose down'
+            // Post-build actions to execute on failure
+            slackSend channel: '#jenkins-testing',
+                      color: 'danger',
+                      message: "ci-pipeline-failed-of project""
         }
     }
 }
